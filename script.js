@@ -1,4 +1,5 @@
-const TARGET_DATE = new Date("2026-02-26T00:00:00");
+// 🕘 Target time = 26 Feb 2026 at 09:00 (local Copenhagen time)
+const TARGET_DATE = new Date("2026-02-26T09:00:00");
 
 const countdownEl = document.getElementById("countdown");
 const countdownScreen = document.getElementById("countdownScreen");
@@ -21,9 +22,7 @@ function updateCountdown() {
   const minutes = Math.floor((diff / 1000 / 60) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  countdownEl.innerHTML = `
-    ${days}d ${hours}h ${minutes}m ${seconds}s
-  `;
+  countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
 setInterval(updateCountdown, 1000);
@@ -46,19 +45,31 @@ function launchCard() {
   }, 1500);
 }
 
-// manual click also opens
+// ---------- OPEN CARD BUTTON ----------
+
 const openBtn = document.getElementById("openBtn");
 openBtn.addEventListener("click", openCard);
 
 let opened = false;
 
 function openCard() {
+  const now = new Date();
+
+  // ❌ Prevent opening before 09:00
+  if (now < TARGET_DATE) {
+    // optional small feedback animation
+    countdownEl.classList.add("shake");
+    setTimeout(() => countdownEl.classList.remove("shake"), 400);
+    return;
+  }
+
   if (opened) return;
   opened = true;
 
   card.classList.add("open");
-  playMusic();
-  createConfettiBurst();
+
+  createConfettiBurst();  // 🎊
+  playMusic();            // 🎵
 }
 
 // ---------- MUSIC (Web Audio version so no mp3 needed) ----------
