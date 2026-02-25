@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Card</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- COUNTDOWN SCREEN -->
+  <section id="countdownScreen" class="screen active">
+    <h1>Something special is coming...</h1>
+    <div id="countdown" class="countdown"></div>
+  </section>
+
+  <!-- CARD CONTAINER -->
+  <section id="cardScreen" class="screen hidden">
+    <div class="card" id="card">
+     <div class="card-front">
+            <div class="front-bg"></div>
+
+            <div class="front-content">
+                <img src="assets/ribbon_no_bg.png" id="openBtn" class="real-bow" alt="Open card bow"/>
+
+                <p class="open-text">Tap the bow to open</p>
+            </div>
+        </div>
+
+      <div class="card-inside">
+        <img src="assets/birthday_card.png" alt="Birthday collage"/>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <canvas id="confettiCanvas"></canvas>
+</body>
+</html>

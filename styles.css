@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6efe7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;   /* better than fixed height */
+  padding: 20px;       /* space around card */
+}
+
+.screen {
+  position: absolute;
+  text-align: center;
+  transition: opacity 1s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.active {
+  opacity: 1;
+}
+
+.countdown {
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+/* CARD */
+
+.card {
+  width: 90vw;              /* take most of screen width */
+  max-width: 500px;         /* limit for tablets/desktop */
+  aspect-ratio: 3 / 4;      /* keeps nice card proportion */
+  perspective: 1200px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card-front,
+.card-inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card-front {
+  background: #ffcad4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-inside {
+  transform: rotateY(180deg);
+  background: white;
+  overflow: hidden;
+}
+
+.card-inside img {
+  width: 100%;
+  height: 100%;
+   /* fills the card nicely */
+}
+
+/* OPEN ANIMATION */
+
+.card.open {
+  transform: rotateY(180deg);
+  transition: transform 1.2s ease;
+}
+
+
+
+/* FRONT BACKGROUND IMAGE (collage frame) */
+.front-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/front_card_bkg.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+/* CONTENT ABOVE THE FRAME */
+.front-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* REAL RIBBON IMAGE BUTTON */
+.real-bow {
+  width: 65%;
+  max-width: 240px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.real-bow:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+.real-bow:active {
+  transform: scale(0.95);
+}
+
+/* CALLIGRAPHIC TEXT */
+.open-text {
+  font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+  font-size: 1.8rem;
+  color: #a13c4f;
+  text-align: center;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+.real-bow {
+  filter: drop-shadow(0 6px 6px rgba(0,0,0,0.25));
+}
+
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
